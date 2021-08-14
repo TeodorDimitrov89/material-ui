@@ -1,58 +1,48 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-// import AcUnitOutlinedIcon from '@material-ui/icons/AcUnitOutlined';
-import DeleteIcon from '@material-ui/icons/Delete';
-import SaveIcon from '@material-ui/icons/Save';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { makeStyles } from '@material-ui/core';
 
+const useStyles = makeStyles({
+  btn: {
+    fontSize: 26,
+    backgroundColor: 'violet',
+    color: 'white',
+    transition: 'all .3s ease-in',
+    '&:hover': {
+      backgroundColor: '#ddd',
+    },
+  },
+  text: {
+    textDecoration: 'underline',
+    marginBottom: 30,
+    fontSize: 32,
+  },
+});
 export default function Create() {
+  const classes = useStyles();
   return (
     <Container>
       <br />
-      <Button variant='contained' color='primary'>
-        Button
-      </Button>
-
-      {/* Icons */}
-
-      {/* <AcUnitOutlinedIcon />
-      <AcUnitOutlinedIcon
+      <Typography
+        variant='h6'
+        component='h2'
         color='primary'
-        fontSize='small'
-      />
-      <AcUnitOutlinedIcon
-        color='secondary'
-        fontSize='large'
-      />
-      <AcUnitOutlinedIcon
-        color='disabled'
-        fontSize='medium'
-      />
-      <AcUnitOutlinedIcon color='error' fontSize='medium' />
-      <AcUnitOutlinedIcon color='action' fontSize='large' /> */}
-
-      {/* Button icons */}
-      <br />
-      <br />
-      <ButtonGroup>
-        <Button
-          variant='outlined'
-          color='secondary'
-          endIcon={<DeleteIcon />}
-        >
-          Delete
-        </Button>
-
-        <Button
-          variant='contained'
-          color='primary'
-          size='small'
-          startIcon={<SaveIcon />}
-        >
-          Save
-        </Button>
-      </ButtonGroup>
+        className={classes.text}
+      >
+        Create a new Note
+      </Typography>
+      <Button
+        variant='contained'
+        color='primary'
+        size='large'
+        className={classes.btn}
+        endIcon={<ChevronRightIcon />}
+      >
+        Move
+      </Button>
     </Container>
   );
 }
