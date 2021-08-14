@@ -1,33 +1,49 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Container from '@material-ui/core/Container';
 
 export default function Create() {
   return (
-    <div>
-      <Typography
-        variant='h6'
-        component='h2'
-        color='textSecondary'
-        align='center'
-        gutterBottom
-      >
-        Create New Note
-      </Typography>
-      <Typography
-        variant='overline'
-        component='h3'
-        color='textPrimary'
-      >
-        Create New Note
-      </Typography>
+    <Container>
+      <Button variant='contained' color='primary'>
+        Button
+      </Button>
 
-      <Typography color='secondary' noWrap>
-        Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Voluptas, amet sunt tenetur explicabo repellat
-        quos numquam, unde itaque commodi veniam alias
-        aspernatur voluptatem voluptatum recusandae
-        temporibus nulla ea! Eaque, aliquid!
-      </Typography>
-    </div>
+      <Button
+        variant='contained'
+        color='primary'
+        disableElevation
+      >
+        Disabled Elevation
+      </Button>
+
+      <Button
+        variant='outlined'
+        color='primary'
+        size='large'
+      >
+        Outlined Button
+      </Button>
+
+      <Button
+        type='submit'
+        color='primary'
+        variant='contained'
+      >
+        Submit 1
+      </Button>
+      <Button
+        type='submit'
+        color='primary'
+        variant='outlined'
+      >
+        Submit 1
+      </Button>
+      <ButtonGroup color='primary' variant='outlined'>
+        <Button type='submit'>Submit 1</Button>
+        <Button type='submit'>Submit 1</Button>
+      </ButtonGroup>
+    </Container>
   );
 }
