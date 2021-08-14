@@ -5,6 +5,8 @@ import Container from '@material-ui/core/Container';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/core';
 
+
+
 const useStyles = makeStyles({
   btn: {
     fontSize: 26,
@@ -38,7 +40,7 @@ export default function Create() {
         variant='contained'
         color='primary'
         size='large'
-        className={classes.btn}
+        className={classes.root}
         endIcon={<ChevronRightIcon />}
       >
         Move
