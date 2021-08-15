@@ -5,7 +5,8 @@ import {
 } from 'react-router-dom';
 import Notes from './pages/Notes';
 import Create from './pages/Create';
-import blueGrey from '@material-ui/core/colors/blueGrey';
+// import blueGrey from '@material-ui/core/colors/';
+import cyan from '@material-ui/core/colors/cyan';
 import purple from '@material-ui/core/colors/purple';
 import {
   createTheme,
@@ -15,14 +16,14 @@ import {
 const theme = createTheme({
   palette: {
     primary: {
-      main: blueGrey[500],
+      main: cyan[500],
     },
     secondary: {
       main: purple[500],
     },
   },
   typography: {
-    fontFamily: 'Oswald',
+    fontFamily: 'Noto Sans',
     fontWeightLight: 400,
     fontWeightRegular: 500,
     fontWeightMedium: 600,
