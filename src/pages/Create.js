@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -13,8 +14,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormGroup from '@material-ui/core/FormGroup';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
 const useStyles = makeStyles({
   root: {
@@ -23,7 +22,7 @@ const useStyles = makeStyles({
       color: 'black',
     },
     '&$checkboxChecked': {
-      color: 'blue',
+      color: 'darkBlue',
     },
   },
   checked: {},
@@ -50,6 +49,7 @@ const useStyles = makeStyles({
 });
 export default function Create() {
   const classes = useStyles();
+  const history = useHistory();
   const [title, setTitle] = useState('');
   const [details, setDetails] = useState('');
   const [titleError, setTitleError] = useState(false);
@@ -75,7 +75,7 @@ export default function Create() {
     setCategory(e.target.value);
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     if (title.trim() === '') {
       setTitleError(true);
@@ -88,6 +88,29 @@ export default function Create() {
       console.log(title, 'title');
       console.log(details, 'details');
       console.log(category, 'category');
+      const data = JSON.stringify({
+        title,
+        details,
+        category,
+      });
+
+      // const data = JSON.stringify({
+      // title,
+      // details,
+      // category,
+      // });
+      // await fetch('http://localhost:8000/notes',
+      //   method: 'POST',
+      //   headers: { 'Content-type': 'application/json' },
+      //   body: data,
+
+      await fetch('http://localhost:8000/notes', {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: data,
+      });
+
+      history.push('/');
     }
   };
 
@@ -125,13 +148,7 @@ export default function Create() {
 
         <FormGroup row>
           <FormControlLabel
-            control={
-              <Checkbox
-                className={clsx(classes.root, classes.checkboxChecked)}
-                icon={<CheckBoxOutlineBlankIcon color='primary' fontSize='medium' />}
-                checkedIcon={<CheckBoxIcon fontSize='medium' />}
-              />
-            }
+            control={<Checkbox className={clsx(classes.root, classes.checkboxChecked)} />}
             label='Checkbox'
           />
         </FormGroup>
