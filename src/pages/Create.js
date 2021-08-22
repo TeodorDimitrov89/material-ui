@@ -186,6 +186,73 @@ export default function Create() {
           Submit
         </Button>
       </form>
+
+      <form noValidate autoComplete='off' onSubmit={submitHandler}>
+        <TextField
+          onChange={titleChangeHandler}
+          className={classes.field}
+          value={title}
+          label='Note Title'
+          variant='outlined'
+          color='secondary'
+          fullWidth
+          required
+          error={titleError}
+        />
+        <TextField
+          onChange={detailsChangeHandler}
+          className={classes.field}
+          value={details}
+          label='Details'
+          variant='outlined'
+          color='secondary'
+          fullWidth
+          multiline
+          rows={4}
+          required
+          error={detailsError}
+        />
+
+        <FormGroup row>
+          <FormControlLabel
+            control={<Checkbox className={clsx(classes.root, classes.checkboxChecked)} />}
+            label='Checkbox'
+          />
+        </FormGroup>
+
+        <FormControl className={classes.field}>
+          <FormLabel component='legend'>Note Category</FormLabel>
+          <RadioGroup
+            aria-label='categories'
+            name='categories'
+            value={category}
+            onChange={changeHandler}
+          >
+            <FormControlLabel
+              value='money'
+              control={<Radio className={clsx(classes.root, classes.checked)} />}
+              label='Money'
+            />
+            <FormControlLabel
+              value='todos'
+              control={<Radio className={clsx(classes.root, classes.checked)} />}
+              label='Todos'
+            />
+            <FormControlLabel value='reminders' control={<Radio />} label='Reminders' />
+            <FormControlLabel value='work' control={<Radio />} label='Work' />
+          </RadioGroup>
+        </FormControl>
+
+        <Button
+          type='submit'
+          variant='contained'
+          color='primary'
+          size='large'
+          endIcon={<ChevronRightIcon />}
+        >
+          Submit
+        </Button>
+      </form>
     </Container>
   );
 }

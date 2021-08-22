@@ -6,7 +6,6 @@ import cyan from '@material-ui/core/colors/cyan';
 import purple from '@material-ui/core/colors/purple';
 import { createTheme, ThemeProvider } from '@material-ui/core';
 import Layout from './components/Layout';
-
 const theme = createTheme({
   palette: {
     primary: {
