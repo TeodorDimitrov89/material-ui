@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -22,12 +23,19 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(2),
     height: `calc(100% - ${theme.spacing(4)}px)`,
   },
+  border: {
+    border: (note) => {
+      if (note.category === 'work') {
+        return '1px solid red';
+      }
+    },
+  },
 }));
 
 export default function NoteCard({ note }) {
-  const classes = useStyles();
+  const classes = useStyles(note);
   return (
-    <Card className={classes.control}>
+    <Card className={clsx(classes.control, classes.border)}>
       <CardHeader
         action={
           <IconButton aria-label='settings'>
