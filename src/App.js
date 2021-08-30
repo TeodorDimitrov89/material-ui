@@ -1,4 +1,13 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+// import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  useLocation,
+  useHistory,
+} from 'react-router-dom';
 import Notes from './pages/Notes';
 import Create from './pages/Create';
 // import blueGrey from '@material-ui/core/colors/';
@@ -25,22 +34,73 @@ const theme = createTheme({
 });
 
 function App() {
+  // let location = useLocation();
+  // const history = useHistory();
+  // console.log(history);
+  // const [displayLocation, setDisplayLocation] = useState(location);
+  // const [transitionStage, setTransistionStage] = useState('fadeIn');
+
+  // useEffect(() => {
+  //   if (location !== displayLocation) setTransistionStage('fadeOut');
+  // }, [location, displayLocation]);
   return (
-    <ThemeProvider theme={theme}>
-      <Router>
-        <Layout>
-          <Switch>
-            <Route exact path='/'>
-              <Notes />
-            </Route>
-            <Route path='/create'>
-              <Create />
-            </Route>
-          </Switch>
-        </Layout>
-      </Router>
-    </ThemeProvider>
+    // <ThemeProvider theme={theme}>
+    //   <Router>
+    //     <Layout>
+    //       <Switch location={displayLocation}>
+    //         <Route exact path='/'>
+    //           <Notes />
+    //         </Route>
+    //         <Route path='/create'>
+    //           <Create />
+    //         </Route>
+    //       </Switch>
+    //     </Layout>
+    //   </Router>
+    // </ThemeProvider>
+    <Router>
+      <div className={`App`}>
+        <nav>
+          <Link to='/'>Home</Link>
+          <Link to='/other'>Other</Link>
+        </nav>
+        <Content />
+      </div>
+    </Router>
   );
 }
 
+function Content() {
+  const location = useLocation();
+  const [displayLocation, setDisplayLocation] = useState(location);
+  const [transitionStage, setTransistionStage] = useState('fadeIn');
+
+  useEffect(() => {
+    if (location !== displayLocation) {
+      console.log('ueEffect');
+      setTransistionStage('fadeOut');
+    }
+  }, [location, displayLocation]);
+
+  return (
+    <div
+      className={`${transitionStage}`}
+      onAnimationEnd={() => {
+        if (transitionStage === 'fadeOut') {
+          setTransistionStage('fadeIn');
+          setDisplayLocation(location);
+        }
+      }}
+    >
+      <Switch location={displayLocation}>
+        <Route path='/other'>
+          <section>other</section>
+        </Route>
+        <Route path='/'>
+          <section>home</section>
+        </Route>
+      </Switch>
+    </div>
+  );
+}
 export default App;
